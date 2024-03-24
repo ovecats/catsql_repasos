@@ -2020,7 +2020,7 @@ INSERT INTO matricula VALUES('AL198','AS100',4.45);
 
 
 -- CONSULTAS
-
+use facultad;
 	-- 1) Caracter, nº de alumnos, nota mínima, máxima y media de las asignaturas. Ordenar el resultado por curso primero y nombre de la asignatura después.
 SELECT curso, nombre, caracter, count(nota) AS 'Alumnos', round(min(nota), 2) AS 'Nota min', round(max(nota), 2) AS 'Nota max', round(avg(nota), 2) AS 'Nota Media' 
 FROM asignatura, matricula 
@@ -2044,10 +2044,10 @@ ORDER BY profesores DESC;
 
 	-- 4) Conocer curso, asignatura, caracter de la asignatura, coordinador y e-mail de contacto
 SELECT asignatura.curso AS curso, asignatura.nombre AS asignatura, asignatura.caracter AS caracter,
-concat(profesor.nombre, ' ', profesor.apellido1, ' ', profesor.apellido2) AS coordinador, email 
+concat(profesor.nombre, ' ', profesor.apellido1, ' ', profesor.apellido2) AS coordinador, email
 FROM asignatura INNER JOIN profesor ON (profesor.idProfesor = asignatura.coordinador)
 ORDER BY curso ASC, asignatura ASC;
-
+use facultad;
 	-- 5) Asignaturas impartidas por profesor de más a menos
  SELECT concat(profesor.nombre, ' ', profesor.apellido1, ' ', profesor.apellido2) AS Profesor, count(impartir.idAsignatura) AS materiasImpartidas
  FROM profesor INNER JOIN impartir ON profesor.idProfesor = impartir.idProfesor 
